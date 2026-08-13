@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The best</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+
+<body>
+    <!-- قسم الناف بار -->
+    <nav class="navbar">
+        <!-- الجزء الأيسر -->
+
+
+        <!-- الجزء الأيمن (الشعار) -->
+        <div class="rightnav">
+          <a href="#" class="brand-logo">
+    UCORNOS <i class="fas fa-leaf"></i>
+</a>
+        </div>
+        <div class="leftnav">
+
+
+
+            <a href="#" class="nav-link">رحلاتي</a>
+
+            <!-- قائمة العملة -->
+            <div class="dropdown">
+                <div class="dropdown-trigger">
+                    <span>KWD</span>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="#">KWD - دينار كويتي</a>
+                    <!-- <a href="#" onclick="changeCurrency('USD')">USD - دولار أمريكي</a>
+                    <a href="#" onclick="changeCurrency('EUR')">EUR - يورو</a>
+                    <a href="#" onclick="changeCurrency('EGP')">EGP - جنيه مصري</a> -->
+                </div>
+            </div>
+
+            <span class="separator">|</span>
+
+            <!-- قائمة اللغة -->
+            <div class="dropdown">
+                <div class="dropdown-trigger">
+                    <span>العربية</span>
+                    <i class="fas fa-chevron-down arrow-icon"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="#">العربية</a>
+                    <a href="#">English</a>
+                </div>
+            </div>
+
+            <span class="separator">|</span>
+
+            <!-- قائمة الدولة -->
+            <div class="dropdown">
+                <div class="dropdown-trigger">
+                    <!-- استبدلنا 🇪🇬 بـ <i class="flag-icon"></i> -->
+                    <span><i class="fas fa-flag"></i> مصر</span>
+                    <i class="fas fa-chevron-down arrow-icon"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="#"><i class="fas fa-flag" style="color: #2baebc;"></i> الكويت</a>
+                    <a href="#"><i class="fas fa-flag" style="color: #d62d20;"></i> مصر</a>
+                    <a href="#"><i class="fas fa-flag" style="color: #00732f;"></i> السعودية</a>
+                    <a href="#"><i class="fas fa-flag" style="color: #ff0000;"></i> الإمارات</a>
+                </div>
+            </div>
+          <div class="nav-actions">
+    <!-- ✅ حالة: غير مسجل دخول (زرار واحد) -->
+    <div id="authLinks">
+      <a href="sign-in.html" class="btn-login">تسجيل الدخول</a>
+    </div>
+
+    <!-- ✅ حالة: مسجل دخول (اسم المستخدم) -->
+    <div id="userMenu" style="display: none;">
+      <div class="user-dropdown">
+        <span class="user-name" id="displayName"></span>
+        <img src="default-avatar.png" alt="صورة المستخدم" class="user-avatar" id="userAvatar">
+        <div class="dropdown-content">
+          <a href="profile.html"> ملفي الشخصي</a>
+          <a href="settings.html">الإعدادات</a>
+          <hr>
+          <a href="#" id="logoutBtn">🚪 تسجيل الخروج</a>
+        </div>
+      </div>
+    </div>
+        </div>
+    </nav>
+
+    <main class="mainpage bg-flights" id="main-container">
+        <div class="hero-section">
+            <div class="hero-bg">
+                <center>
+                    <h1>وجهتك الأولى لخدمات أفضل</h1>
+                    <h3>أفضل الشركاء لدينا بمنصة الأفضل</h3>
+                </center>
+            </div>
+
+            <div class="booking-container">
+                <!-- شريط التبويبات -->
+                               <!-- شريط اختيار الخدمات (التبويبات) -->
+                <div class="selectbar">
+                    <button class="tab-btn active" onclick="switchTab('flights', 'bg-flights')">
+                        <i class="fas fa-plane"></i> رحلات طيران
+                    </button>
+                    
+                    <button class="tab-btn" onclick="switchTab('umrah', 'bg-umrah')">
+                        <i class="fas fa-mosque"></i> العمرة
+                    </button>
+
+                    <button class="tab-btn" onclick="switchTab('hotels', 'bg-hotels')">
+                        <i class="fas fa-hotel"></i> فنادق
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('packages', 'bg-packages')">
+                        <i class="fas fa-suitcase"></i> باكدجات
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('cars', 'bg-cars')">
+                        <i class="fas fa-car"></i> تأجير سيارات
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('marine', 'bg-marine')">
+                        <i class="fas fa-ship"></i> رحلات بحرية
+                    </button>
+                </div>
+
+                                    <!-- ================= نموذج حجز الطيران ================= -->
+                    <div id="flights" class="tab-content active-content">
+                        <div class="search-form" style="position: relative;">
+                            
+                            <!-- زر رحلات مرنة (فوق على الشمال) -->
+                            <div class="flexible-dates-wrapper" onclick="toggleFlexibleDates()">
+                                <label class="flexible-label">
+                                    <input type="checkbox" id="flexible-check">
+                                    <span>رحلات مرنة ± 3 أيام</span>
+                                </label>
+                            </div>
+
+                            <!-- أزرار نوع الرحلة -->
+                            <div class="trip-type">
+                                <button class="trip-btn active" onclick="selectTripType(this, 'round')">رحلة ذهاب وعودة</button>
+                                <button class="trip-btn" onclick="selectTripType(this, 'oneway')">رحلة اتجاه واحد</button>
+                                <button class="trip-btn" onclick="selectTripType(this, 'multi')">وجهات متعددة</button>
+                            </div>
+
+                            <!-- ========================================== -->
+                            <!-- 1. الجزء الأساسي (ذهاب وعودة / اتجاه واحد) -->
+                            <!-- ========================================== -->
+                            <div id="single-trip-fields">
+                                <div class="input-group" style="position: relative;">
+                                    
+                                    <!-- حقل "من" -->
+                                    <div class="input-box">
+                                        <label>من</label>
+                                        <div class="dropdown-wrapper">
+                                            <select class="city-select" onchange="updateDisplay(this)">
+                                                <option value="CAI">القاهرة (CAI)</option>
+                                                <option value="JED">جدة (JED)</option>
+                                                <option value="DXB">دبي (DXB)</option>
+                                                <option value="KWI">الكويت (KWI)</option>
+                                                <option value="IST">إسطنبول (IST)</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- زر التبديل بين المدن -->
+                                    <div class="swap-icon" onclick="switchCities()">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+
+                                    <!-- حقل "إلى" -->
+                                    <div class="input-box">
+                                        <label>إلى</label>
+                                        <div class="dropdown-wrapper">
+                                            <select class="city-select" onchange="updateDisplay(this)">
+                                                <option value="JED">جدة (JED)</option>
+                                                <option value="CAI">القاهرة (CAI)</option>
+                                                <option value="DXB">دبي (DXB)</option>
+                                                <option value="KWI">الكويت (KWI)</option>
+                                                <option value="IST">إسطنبول (IST)</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- حقل المغادرة -->
+                                    <div class="input-box">
+                                        <label>المغادرة</label>
+                                        <input type="text" class="date-picker" placeholder="اختر تاريخ" readonly>
+                                        <i class="far fa-calendar-alt icon"></i>
+                                    </div>
+
+                                    <!-- حقل العودة -->
+                                    <div class="input-box return-date-box" id="return-field-container">                         
+                                        <label>العودة</label>
+                                        <input type="text" class="date-picker" id="return-date-input" placeholder="اختر تاريخ" readonly>
+                                        <i class="far fa-calendar-alt icon"></i>
+                                    </div>
+
+                                    <!-- حقل المسافرون (البوب اب) -->
+                                    <div class="input-box clickable-box passenger-trigger" style="position: relative;">
+                                        <label>المسافرون / درجة السفر</label>
+                                        <button id="popup-trigger-btn" onclick="togglePassengerPopup(event)" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:transparent; z-index:5;"></button>
+                                        <div class="display-val" id="passenger-display">1 بالغ / درجة رجال الأعمال</div>
+                                        <i class="fas fa-chevron-down icon" id="passenger-arrow"></i>
+
+                                        <!-- القائمة المنبثقة (جوه الحقل) -->
+                                        <div class="passenger-popup" id="passenger-popup">
+                                            <div class="counter-row">
+                                                <span>بالغ</span>
+                                                <div class="counter-controls">
+                                                    <button class="counter-btn minus" onclick="updateCount('adults', -1)">-</button>
+                                                    <span class="counter-num" id="adults-count">1</span>
+                                                    <button class="counter-btn plus" onclick="updateCount('adults', 1)">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="counter-row">
+                                                <span>طفل <small>(2 - 12 العمر)</small></span>
+                                                <div class="counter-controls">
+                                                    <button class="counter-btn minus" onclick="updateCount('children', -1)">-</button>
+                                                    <span class="counter-num" id="children-count">0</span>
+                                                    <button class="counter-btn plus" onclick="updateCount('children', 1)">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="counter-row">
+                                                <span>رضع <small>(0 - 2 العمر)</small></span>
+                                                <div class="counter-controls">
+                                                    <button class="counter-btn minus" onclick="updateCount('infants', -1)">-</button>
+                                                    <span class="counter-num" id="infants-count">0</span>
+                                                    <button class="counter-btn plus" onclick="updateCount('infants', 1)">+</button>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="class-selector">
+                                                <button class="class-btn" onclick="selectClass(this, 'economy')">الدرجة الإقتصادية</button>
+                                                <button class="class-btn active" onclick="selectClass(this, 'business')">درجة رجال الأعمال</button>
+                                            </div>
+                                            <button class="popup-done-btn" onclick="applyPassengerSelection()">موافق</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- زر البحث الأساسي -->
+                                    <button class="search-btn" onclick="triggerSearch()">بحث</button>
+                                </div>
+                            </div>
+
+                            <!-- ========================================== -->
+                            <!-- 2. الجزء الخاص بالوجهات المتعددة (Multi-City) -->
+                            <!-- ========================================== -->
+                            <div id="multi-trip-fields" style="display: none; margin-top: 15px;">
+                                
+                                <!-- حاوية الصفوف -->
+                                <div id="multi-city-rows-container">
+                                    <!-- الصف الأول -->
+                                    <div class="multi-row">
+                                        <div class="input-box multi-input">
+                                            <label>من</label>
+                                            <select><option>CAI - القاهرة</option></select>
+                                        </div>
+                                        
+                                        <div class="swap-icon-small">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </div>
+                                        
+                                        <div class="input-box multi-input">
+                                            <label>إلى</label>
+                                            <select><option>JED - جدة</option></select>
+                                        </div>
+                                        
+                                        <div class="input-box multi-input">
+                                            <label>تاريخ المغادرة</label>
+                                            <input type="text" class="date-picker" placeholder="4 أغسطس 2026" readonly>
+                                            <i class="far fa-calendar-alt icon"></i>
+                                        </div>
+
+                                        <button class="remove-row-btn" onclick="removeMultiRow(this)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- أزرار التحكم في الوجهات المتعددة -->
+                                <div class="multi-actions-row">
+                                    <button class="add-city-btn" onclick="addMultiCityRow()">
+                                        <i class="fas fa-plus"></i> أضف وجهة أخرى
+                                    </button>
+                                    
+                                    <button class="search-btn-multi" onclick="triggerSearch()">بحث</button>
+                                </div>
+
+                            </div>
+
+                            <!-- ========================================== -->
+                            <!-- 3. خيارات البحث المتقدمة (تحت زر البحث) -->
+                            <!-- ========================================== -->
+                            <div class="advanced-options-container">
+                                <div class="advanced-toggle" onclick="toggleAdvancedOptions()">
+                                    <i class="fas fa-chevron-down" id="adv-arrow"></i> خيارات البحث المتقدمة
+                                </div>
+                                <div id="advanced-content" style="display: none; margin-top: 10px;">
+                                    
+                                    <div class="flight-options-row">
+                                        <label class="option-check">
+                                            <input type="checkbox" checked> 
+                                            <span>رحلات مباشرة</span>
+                                        </label>
+                                        <label class="option-check">
+                                            <input type="checkbox"> 
+                                            <span>قابل للاسترجاع</span>
+                                        </label>
+                                        
+                                        <!-- رمز ترويجي مع علامة صح -->
+                                        <label class="option-check promo-toggle" onclick="togglePromoCodeField()">
+                                            <input type="checkbox" id="promo-checkbox"> 
+                                            <span>رمز ترويجي</span>
+                                        </label>
+                                    </div>
+
+                                    <!-- حقل كود الخصم (يظهر تحت الخيارات لما يتضغط) -->
+                                    <div class="promo-code-wrapper" id="promo-code-wrapper" style="display: none; margin-top: 15px;">
+                                        <div class="input-box" style="height: 50px; padding: 8px 15px; width: 100%; max-width: 350px; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; display: flex; align-items: center; position: relative;">
+                                            <input type="text" id="promo-code-input" placeholder="أدخل رمز الخصم" style="border:none; outline:none; background:transparent; width:100%; font-size:15px; font-weight:600; color:#333;">
+                                            <i class="fas fa-tag" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:#aaa; font-size:18px;"></i>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                                      <!-- نموذج حجز العمرة -->
+                    <div id="umrah" class="tab-content">
+                        <div class="search-form">
+                            
+                            <!-- 1. العنوان الكبير -->
+                            <h2 class="umrah-title">وفر حتى 40% على باقات العمرة</h2>
+                            <p class="umrah-subtitle">عروض استثنائية عند حجز فندق مع رحلات الطيران</p>
+
+                            <!-- 2. أزرار نوع الرحلة -->
+                            <div class="trip-type" style="justify-content: flex-start; margin-bottom: 20px;">
+                                <button class="trip-btn active" onclick="selectTripType(this, 'round')">رحلة ذهاب وعودة</button>
+                                <button class="trip-btn" onclick="selectTripType(this, 'oneway')">رحلة اتجاه واحد</button>
+                            </div>
+
+                            <!-- 3. حقول البحث -->
+                            <div class="input-group">
+                                <!-- حقل "من" -->
+                                <div class="input-box">
+                                    <label>من</label>
+                                    <select class="city-select" onchange="updateDisplay(this)">
+                                        <option value="CAI">القاهرة - CAI</option>
+                                        <option value="JED">جدة - JED</option>
+                                        <option value="DXB">دبي - DXB</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down icon"></i>
+                                </div>
+                                
+                              
+                                
+                                <!-- حقل "إلى" (جدة، المدينة، مكة) -->
+                                <div class="input-box">
+                                    <label>إلى</label>
+                                    <select class="city-select" onchange="updateDisplay(this)">
+                                        <option value="JED">جدة - JED</option>
+                                        <option value="MED">المدينة المنورة - MED</option>
+                                        <option value="MAKKAH">مكة المكرمة</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down icon"></i>
+                                </div>
+                                
+                                <!-- حقل المغادرة -->
+                                <div class="input-box">
+                                    <label>المغادرة</label>
+                                    <input type="text" class="date-picker" placeholder="2 سبتمبر 2025" readonly>
+                                    <i class="far fa-calendar-alt icon"></i>
+                                </div>
+                                
+                                <!-- حقل العودة -->
+                                <div class="input-box return-date-box">
+                                    <label>العودة</label>
+                                    <input type="text" class="date-picker" placeholder="3 سبتمبر 2025" readonly>
+                                    <i class="far fa-calendar-alt icon"></i>
+                                </div>
+                                
+                                <!-- حقل الإقامة/المسافرين -->
+                                <div class="input-box">
+                                    <label>الإقامة</label>
+                                    <select class="city-select" onchange="updateDisplay(this)">
+                                        <option value="1">شخص بالغ / 1 غرفة</option>
+                                        <option value="2">شخصين بالغ / 1 غرفة</option>
+                                        <option value="3">3 أشخاص / 1 غرفة</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down icon"></i>
+                                </div>
+                                
+                                <button class="search-btn" onclick="triggerSearch()">بحث</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- نموذج حجز باكدجات) -->
+                    <div id="packages" class="tab-content">
+                        <div class="search-form">
+                            
+                            <!-- 1. العنوان الكبير -->
+                            <h2 class="package-title">احجز باقه سفر ووفر حتى 40%</h2>
+
+                            <!-- 2. أزرار نوع الرحلة -->
+                            <div class="trip-type" style="justify-content: flex-start; margin-top: 0;">
+                                <button class="trip-btn active" onclick="selectTripType(this, 'round')">رحلة ذهاب وعودة</button>
+                                <button class="trip-btn" onclick="selectTripType(this, 'oneway')">رحلة اتجاه واحد</button>
+                            </div>
+
+                            <!-- 3. حقول البحث -->
+                            <div class="input-group" style="margin-top: 5px;">
+                                <!-- حقل "من" -->
+                                <div class="input-box">
+                                    <label>من </label>
+                                    <select class="city-select" onchange="updateDisplay(this)">
+                                        <option value="CAI">القاهرة - CAI</option>
+                                        <option value="JED">جدة - JED</option>
+                                        <option value="DXB">دبي - DXB</option>
+                                    </select>
+                                    <i  class="fas fa-chevron-down icon"></i>
+                                </div>
+                                
+                                <!-- زر التبديل -->
+                                <div class="swap-icon" onclick="switchCities()">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                
+                                <!-- حقل "إلى" -->
+                                <div class="input-box">
+                                    <label>إلى</label>
+                                    <select class="city-select" onchange="updateDisplay(this)">
+                                        <option value="JED">جدة - JED</option>
+                                        <option value="CAI">القاهرة - CAI</option>
+                                        <option value="DXB">دبي - DXB</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down icon"></i>
+                                </div>
+                                
+                                <!-- حقل المغادرة -->
+                                <div class="input-box">
+                                    <label>المغادرة</label>
+                                    <input type="text" class="date-picker" placeholder="2 سبتمبر 2025" readonly>
+                                    <i class="far fa-calendar-alt icon"></i>
+                                </div>
+                                
+                                <!-- حقل العودة -->
+<div class="input-box return-date-box">
+                                        <label>العودة</label>
+                                    <input type="text" class="date-picker" placeholder="3 سبتمبر 2025" readonly>
+                                    <i class="far fa-calendar-alt icon"></i>
+                                </div>
+                                
+                                <!-- حقل الإقامة/المسافرين -->
+                                <div class="input-box">
+                                    <label>الإقامة</label>
+                                    <select class="city-select" onchange="updateDisplay(this)">
+                                        <option value="1">شخص بالغ / 1 غرفة</option>
+                                        <option value="2">شخصين بالغ / 1 غرفة</option>
+                                        <option value="3">3 أشخاص / 1 غرفة</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down icon"></i>
+                                </div>
+                                <!-- قابل للاسترجاع  -->
+                                  <div class="checkboxes">
+                                <label><input type="checkbox" checked> مباشر</label>
+                                <label><input type="checkbox" checked> ترانزيت</label>
+                            </div>
+                                <!-- زر البحث -->
+                                <button class="search-btn" onclick="triggerSearch()">بحث</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                <!-- ================= نموذج حجز فندق ================= -->
+                <div id="hotels" class="tab-content">
+                    <div class="search-form">
+                        <div class="booking-tabs-header">
+                            <div class="header-tab active"><i class="fas fa-hotel"></i> حجز فندق</div>
+                            <div class="header-tab inactive"><i class="fas fa-cog"></i> إدارة الحجز</div>
+                        </div>
+                        <div class="sub-categories">
+                            <button class="sub-btn active" onclick="selectSubCategory(this)">الجميع</button>
+                            <button class="sub-btn" onclick="selectSubCategory(this)">فنادق</button>
+                            <button class="sub-btn" onclick="selectSubCategory(this)">شقق فندقية</button>
+                            <button class="sub-btn" onclick="selectSubCategory(this)">سكن للطلبة</button>
+                            <button class="sub-btn" onclick="selectSubCategory(this)">منتجعات</button>
+                            <button class="sub-btn" onclick="selectSubCategory(this)">شاليهات</button>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-box">
+                                <label>المنطقة</label>
+                                <select class="city-select" onchange="updateDisplay(this)">
+                                    <option value="CAI">القاهرة</option>
+                                    <option value="ALEX">الإسكندرية</option>
+                                    <option value="SHARM">شرم الشيخ</option>
+                                </select>
+                                <i class="fas fa-chevron-down icon"></i>
+                            </div>
+                            <div class="input-box">
+                                <label>المغادرة</label>
+                                <input type="text" class="date-picker" placeholder="اختر تاريخ" readonly>
+                                <i class="far fa-calendar-alt icon"></i>
+                            </div>
+                            <div class="input-box">
+                                <label>العودة</label>
+                                <input type="text" class="date-picker" placeholder="اختر تاريخ" readonly>
+                                <i class="far fa-calendar-alt icon"></i>
+                            </div>
+                            <div class="input-box">
+                                <label>المسافرون / الغرف</label>
+                                <select class="city-select" onchange="updateDisplay(this)">
+                                    <option value="1">1 شخص / غرفة</option>
+                                    <option value="2">2 شخص / غرفة</option>
+                                    <option value="fam">عائلة / غرفتين</option>
+                                </select>
+                                <i class="fas fa-chevron-down icon"></i>
+                            </div>
+                            <button class="search-btn" onclick="triggerSearch()">بحث</button>
+                        </div>
+                        <div class="search-footer">
+                            <div class="checkboxes">
+                                <label><input type="checkbox" checked> شامل الإفطار</label>
+                                <label><input type="checkbox" checked> مسترجع</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                    <!-- نموذج حجز تأجير سيارات -->
+                    <div id="cars" class="tab-content">
+                        <div class="search-form">
+                            
+                            <!-- 1. العنوان الكبير -->
+                            <h2 class="cars-title">قارن أسعار تأجير السيارات ووفر!</h2>
+
+                            <!-- 2. ترويسة الأعمدة (التسميات فوق الحقول) -->
+                            <div class="cars-column-headers">
+                                <span>موقع الاستلام والإرجاع</span>
+                                <span>تاريخ ووقت الاستلام</span>
+                                <span>تاريخ ووقت الإرجاع</span>
+                            </div>
+
+                            <!-- 3. صف الحقول الأساسي -->
+                            <div class="cars-inputs-row">
+                                
+                                <!-- حقل موقع الاستلام (مع زر موقع مختلف) -->
+                                <div class="cars-column pickup-col">
+                                    <div class="input-box cars-location-box">
+                                        <label>موقع الاستلام</label>
+                                        <select class="city-select">
+                                            <option value="CAI">مطار القاهرة</option>
+                                            <option value="ALEX">مطار الإسكندرية</option>
+                                            <option value="SHARM">مطار شرم الشيخ</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down icon"></i>
+                                    </div>
+                                    <!-- زر موقع إرجاع مختلف -->
+                                    <div class="different-return-btn" onclick="toggleDifferentReturn()">
+                                        <i class="fas fa-plus-circle"></i> موقع إرجاع مختلف
+                                    </div>
+                                </div>
+
+                                <!-- حقل تاريخ ووقت الاستلام -->
+                                <div class="cars-column">
+                                    <div class="date-time-group">
+                                        <div class="input-box date-box" style="flex: 2;">
+                                            <label>تاريخ الاستلام</label>
+                                            <input type="text" class="date-picker" placeholder="2 سبتمبر 2025" readonly>
+                                            <i class="far fa-calendar-alt icon"></i>
+                                        </div>
+                                        <div class="input-box time-box" style="flex: 1;">
+                                            <label>الوقت</label>
+                                            <select class="city-select">
+                                                <option value="10:00">10:00</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="13:00">13:00</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- حقل تاريخ ووقت الإرجاع -->
+                                <div class="cars-column">
+                                    <div class="date-time-group">
+                                        <div class="input-box date-box" style="flex: 2;">
+                                            <label>تاريخ الإرجاع</label>
+                                            <input type="text" class="date-picker" placeholder="3 سبتمبر 2025" readonly>
+                                            <i class="far fa-calendar-alt icon"></i>
+                                        </div>
+                                        <div class="input-box time-box" style="flex: 1;">
+                                            <label>الوقت</label>
+                                            <select class="city-select">
+                                                <option value="10:00">10:00</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="13:00">13:00</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- 4. الصف السفلي (زر البحث وخانة الاختيار) -->
+                            <div class="cars-footer">
+                                <button class="search-btn" onclick="triggerSearch()">بحث</button>
+                                <div class="airport-shuttle-check">
+                                    <label><input type="checkbox" checked> نقل من المطار</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                                        <!-- نموذج حجز رحلات بحرية -->
+                    <div id="marine" class="tab-content">
+                        <div class="search-form">
+                            
+                            <!-- 1. العنوان الكبير (على اليمين) -->
+                            <h2 class="marine-title">إختر رحلتك البحرية التالية!</h2>
+
+                            <!-- 2. ترويسة الأعمدة (التسميات فوق الحقول) -->
+                            <div class="marine-column-headers">
+                                <span>موقع المغادرة و الوجهة</span>
+                                <span>تاريخ الرحلة</span>
+                                <span>نوع الرحلة</span>
+                            </div>
+
+                            <!-- 3. صف الحقول الأساسي -->
+                            <div class="marine-inputs-row">
+                                
+                                <!-- حقل المغادرة -->
+                                <div class="marine-column">
+                                    <div class="input-box">
+                                        <label>المغادرة</label>
+                                        <select class="city-select">
+                                            <option value="HRG">ميناء الغردقة</option>
+                                            <option value="SSH">ميناء شرم الشيخ</option>
+                                            <option value="ALEX">ميناء الإسكندرية</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down icon"></i>
+                                    </div>
+                                </div>
+
+                                <!-- حقل الوجهة -->
+                                <div class="marine-column">
+                                    <div class="input-box">
+                                        <label>الوجهة</label>
+                                        <select class="city-select">
+                                            <option value="MALDIVES">جزر المالديف</option>
+                                            <option value="SANTORINI">سانتوريني</option>
+                                            <option value="DUBAI">دبي</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down icon"></i>
+                                    </div>
+                                </div>
+
+                                <!-- حقل تاريخ المغادرة -->
+                                <div class="marine-column">
+                                    <div class="input-box date-box">
+                                        <label>تاريخ المغادرة</label>
+                                        <input type="text" class="date-picker" placeholder="23 مارس 2026" readonly>
+                                        <i class="far fa-calendar-alt icon"></i>
+                                    </div>
+                                </div>
+
+                                <!-- حقل نوع الرحلة -->
+                                <div class="marine-column">
+                                    <div class="input-box">
+                                        <label>نوع الرحلة</label>
+                                        <select class="city-select">
+                                            <option value="all">جميع الرحلات</option>
+                                            <option value="family">رحلات عائلية</option>
+                                            <option value="honeymoon">شهر عسل</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down icon"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- 4. زر البحث -->
+                            <div class="marine-footer">
+                                <button class="search-btn" onclick="triggerSearch()">بحث</button>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+               <!-- لماذا تستخدم منصة الأفضل -->
+        <center>
+            <h2 class="advh2">لماذا تستخدم منصة الأفضل</h2>
+        </center>
+        <div class="advantages">
+
+            <div class="adv">
+                <div class="icon-box">
+                    <i class="fas fa-tags icon-teal"></i>
+                </div>
+                <h4>أفضل عروض السفر</h4>
+            </div>
+
+            <div class="adv">
+                <div class="icon-box">
+                    <i class="fas fa-search-dollar icon-teal"></i>
+                </div>
+                <h4>آلاف من عروض الرحلات و الفنادق</h4>
+            </div>
+
+            <div class="adv">
+                <div class="icon-box">
+                    <i class="fas fa-user-tie icon-teal"></i>
+                </div>
+                <h4>إرشادات الخبراء</h4>
+            </div>
+
+            <div class="adv">
+                <div class="icon-box">
+                    <i class="fas fa-clock icon-teal"></i>
+                </div>
+                <h4>أفضل القيم و الخدمات المميزة</h4>
+            </div>
+        </div>
+                <!-- هل زيارة لندن ما تزال ضمن خططك -->
+        <div class="visit">
+            <div class="visit-header">
+                <h2>هل زيارة لندن ما تزال ضمن خططك؟</h2>
+                <p>عدد المقاعد المتوفرة محدود. استكمل حجزك لضمان حصولك على مقعد والانطلاق نحو مغامرة جديدة.</p>
+            </div>
+
+            <div class="visit-card">
+                
+                <!-- الجزء الأيسر: تفاصيل الرحلة -->
+                <div class="card-info">
+                    <!-- ترويسة البطاقة -->
+                    <div class="card-top-bar">
+                        <span>13 سبتمبر 2025 . اتجاه واحد / 1 مسافر</span>
+                        <img src="photos/Qatar-Airways-Emblem.png" alt="Qatar Airways" class="airline-logo">
+                    </div>
+
+                    <!-- مسار الطيران -->
+                    <div class="flight-path-container">
+                        <div class="airport-info left">
+                            <div class="code">KWI</div>
+                            <div class="time">04:10</div>
+                        </div>
+                        
+                        <div class="path-middle">
+                            <div class="duration">3h 15m . مباشر</div>
+                            <div class="line-container">
+                                <div class="dashed-line"></div>
+                                <i class="fas fa-plane path-icon"></i>
+                                <div class="dot dot-right"></div>
+                            </div>
+                            <div class="baggage-info">
+                                <i class="fas fa-suitcase"></i> 45 كجم
+                                <span class="dot small-dot"></span>
+                                <i class="fas fa-wifi" style="color: #4db6ac;"></i>
+                            </div>
+                        </div>
+
+                        <div class="airport-info right">
+                            <div class="code">CAI</div>
+                            <div class="time">01:50</div>
+                        </div>
+                    </div>
+
+                    <!-- المزايا -->
+                    <div class="features-row">
+                        <div class="feature-item">
+                            <i class="fas fa-clock feature-icon"></i>
+                            <h4>إلغاء الحجز خلال 24 ساعة</h4>
+                            <p>استمتع بميزة إلغاء الحجز بدون رسوم، لفئات معينة من التذاكر</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-gem feature-icon"></i>
+                            <h4>مزايا الحجز معنا</h4>
+                            <p>استمتع بمزايا حصرية عند الحجز معنا عبر الإنترنت.</p>
+                        </div>
+                    </div>
+
+                    <!-- زر الحجز -->
+                    <button class="visit-btn">إستكمل الحجز <i class="fas fa-arrow-left"></i></button>
+                </div>
+
+                <!-- الجزء الأيمن: الصورة -->
+                <div class="card-image" style="background-image: url('photos/صورة-معالم-سياحية-في-لندن.jpg');">
+                </div>
+
+            </div>
+        </div>
+               <!-- اكتشف افضل الوجهات السياحية -->
+        <div class="destinations-section">
+            <h2 class="dest-text">أكتشف أفضل الوجهات السياحية</h2>
+            
+            <div class="destinations-grid">
+                <!-- 1. إسطنبول -->
+                <div class="dest-card">
+                    <img src="photos/great-seto-bridge.jpg" alt="إسطنبول">
+                    <div class="dest-content">
+                        <div class="dest-price-badge">إبتداءاً من 12 KWD</div>
+                        <h3>الكويت إلى إسطنبول</h3>
+                    </div>
+                </div>
+
+                <!-- 2. لندن -->
+                <div class="dest-card">
+                    <img src="photos/صورة-معالم-سياحية-في-لندن.jpg" alt="لندن">
+                    <div class="dest-content">
+                        <div class="dest-price-badge">إبتداءاً من 15 KWD</div>
+                        <h3>الكويت إلى لندن</h3>
+                    </div>
+                </div>
+
+                <!-- 3. مصر (شرم الشيخ) -->
+                <div class="dest-card">
+                    <img src="photos/sharm.jpg" alt="مصر">
+                    <div class="dest-content">
+                        <div class="dest-price-badge">إبتداءاً من 15 KWD</div>
+                        <h3>الكويت إلى مصر</h3>
+                    </div>
+                </div>
+
+                <!-- 4. دبي -->
+                <div class="dest-card">
+                    <img src="photos/Burj-Khalifa-best-1024x683.jpg" alt="دبي">
+                    <div class="dest-content">
+                        <div class="dest-price-badge">إبتداءاً من 15 KWD</div>
+                        <h3>الكويت إلى دبي</h3>
+                    </div>
+                </div>
+
+                <!-- 5. روما -->
+                <div class="dest-card">
+                    <img src="photos/roma.jpg" alt="روما">
+                    <div class="dest-content">
+                        <div class="dest-price-badge">إبتداءاً من 15 KWD</div>
+                        <h3>الكويت إلى روما</h3>
+                    </div>
+                </div>
+
+                <!-- 6. اليابان -->
+                <div class="dest-card">
+                    <img src="photos/GAPAN.webp" alt="اليابان">
+                    <div class="dest-content">
+                        <div class="dest-price-badge">إبتداءاً من 15 KWD</div>
+                        <h3>الكويت إلى اليابان</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+                  <!-- احجز ونظم رحلاتك مع خدمات الأفضل -->
+        <div class="services-section">
+            
+            <!-- 1. الجزء الأيمن (النص) - حطينا النص أولاً ليظهر على اليمين -->
+            <div class="static-text-part">
+                <h2>احجز ونظم رحلتك مع خدمات الأفضل</h2>
+                <p>الأفضل شركة مساهمة في جميع خطواتك نحو النجاح</p>
+                <button class="cta-btn">سجل حساب جديد <i class="fas fa-arrow-left"></i></button>
+            </div>
+
+            <!-- 2. الجزء الأيسر (السكرولر) -->
+            <div class="slider-container">
+                <div class="slider-track">
+                    
+                    <!-- ===== المجموعة الأولى ===== -->
+                    <div class="service-card">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="card-overlay">
+                            <i class="fas fa-hotel"></i>
+                            <h3>فنادق</h3>
+                            <p>تقدر تحجز غرف بجميع أنواعها</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="card-overlay">
+                            <i class="fas fa-car"></i>
+                            <h3>سيارات</h3>
+                            <p>تقدر تأجر سيارات بجميع أنواعها</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="card-overlay">
+                            <i class="fas fa-passport"></i>
+                            <h3>التأشيرة الإلكترونية</h3>
+                            <p>تقدر تحجز تأشيرتك الإلكترونية من هنا</p>
+                        </div>
+                    </div>
+
+                    <!-- ===== المجموعة الثانية (مكررة للحركة اللامتناهية) ===== -->
+                    <div class="service-card">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="card-overlay">
+                            <i class="fas fa-hotel"></i>
+                            <h3>فنادق</h3>
+                            <p>تقدر تحجز غرف بجميع أنواعها</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="card-overlay">
+                            <i class="fas fa-car"></i>
+                            <h3>سيارات</h3>
+                            <p>تقدر تأجر سيارات بجميع أنواعها</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="card-overlay">
+                            <i class="fas fa-passport"></i>
+                            <h3>التأشيرة الإلكترونية</h3>
+                            <p>تقدر تحجز تأشيرتك الإلكترونية من هنا</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+              <!-- ===== إلى أين ستسافر؟ ===== -->
+        <div class="where-to-go-section">
+            <h2 class="section-title">إلى أين ستسافر؟</h2>
+
+            <!-- 1. الشريط العلوي: القائمة المنسدلة + التبويبات -->
+            <div class="filter-header">
+                <!-- القائمة المنسدلة السريعة -->
+                <div class="quick-dropdown">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="city-select" onchange="filterCity(this.value)">
+                        <option value="all">جميع المدن</option>
+                        <option value="kuwait">الكويت</option>
+                        <option value="ahmadi">الأحمدي</option>
+                        <option value="farwaniya">الفروانية</option>
+                        <option value="jahra">الجهراء</option>
+                    </select>
+                </div>
+
+                <!-- شريط التبويبات -->
+                <div class="city-tabs">
+                    <button class="city-tab-btn active" onclick="filterCity('kuwait')">الكويت</button>
+                    <button class="city-tab-btn" onclick="filterCity('ahmadi')">الأحمدي</button>
+                    <button class="city-tab-btn" onclick="filterCity('farwaniya')">الفروانية</button>
+                    <button class="city-tab-btn" onclick="filterCity('jahra')">الجهراء</button>
+                </div>
+            </div>
+
+            <!-- 2. شبكة النتائج (البطاقات) -->
+            <div class="city-grid-container" id="city-results">
+            </div>
+
+        </div>
+                  <!-- اكتشف أفضل عروض السفر في الكون -->
+        <div class="explore-section-wrapper">
+            <div class="explore-section">
+                
+                <!-- 1. الصورة (على اليمين) -->
+                <div class="explore-image-side">
+                    <img src="photos/travel.jpg" alt="Travel App" onerror="this.src='https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?q=80&w=2070&auto=format&fit=crop'">
+                </div>
+
+                <!-- 2. النص والتحميل (على الشمال) -->
+                <div class="explore-text-side">
+                    <h2 class="explore-title">اكتشف أفضل عروض السفر في الكون مع تطبيق الأفضل</h2>
+                    
+                    <ul class="explore-features">
+                        <li>
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>ابحث وقارن واحجز أفضل عروض الرحلات والفنادق — كل ذلك في تطبيق واحد.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>وفر أكثر مع رموز الخصم داخل التطبيق. اختر أرخص يوم للسفر.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>عبر الدردشة وواتساب والهاتف والبريد الإلكتروني.</span>
+                        </li>
+                    </ul>
+
+                    <h3 class="scan-text">امسح للتحميل</h3>
+                    
+                    <div class="app-download-area">
+                        <!-- أزرار التحميل -->
+                        <div class="store-buttons">
+                            <a href="#" class="store-btn">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span>احصل عليه من</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="store-btn">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span>تنزيل من</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="store-btn">
+                                <i class="fas fa-shopping-bag"></i>
+                                <div>
+                                    <span>تنزيل من</span>
+                                    <strong>AppGallery</strong>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- QR Code -->
+                        <div class="qr-code-box">
+                            <img src="photos/qr_code_PNG37.png" alt="QR Code">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+                  <!-- فوتر الصفحة -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                
+                <!-- 1. العمود الأول (اليمين): خدماتنا (مقسمة لعمودين) -->
+                <div class="footer-col services-col">
+                    <h3>خدماتنا</h3>
+                    <div class="services-grid">
+                        <ul>
+                            <li><a href="#">رحلات طيران</a></li>
+                            <li><a href="#">فنادق وشقق فندقية</a></li>
+                            <li><a href="#">سيارات</a></li>
+                            <li><a href="#">رحلات كروز</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">التأمين</a></li>
+                            <li><a href="#">التأشيرات</a></li>
+                            <li><a href="#">العمرة</a></li>
+                            <li><a href="#">قطارات</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. العمود الثاني (المنتصف): الشركة -->
+                <div class="footer-col mid-col">
+                    <h3>الشركة</h3>
+                    <ul>
+                        <li><a href="#">عن الأفضل</a></li>
+                        <li><a href="#">الدعم</a></li>
+                    </ul>
+                </div>
+
+                <!-- 3. العمود الثالث (اليسار): الشعار والدفع -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        UCORNOS <i class="fas fa-leaf"></i>
+                    </div>
+                    
+                    <div class="payment-partners">
+                        <span>شركاء الدفع</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="app-download">
+                        <span>امسح الرمز ونزل تطبيق سف</span>
+                        <div class="app-stores-flex">
+                            <div class="app-buttons">
+                                <a href="#" class="store-btn"><i class="fab fa-apple"></i> App Store</a>
+                                <a href="#" class="store-btn"><i class="fab fa-google-play"></i> Google Play</a>
+                            </div>
+                            <div class="footer-qr">
+                                <img src="photos/qr_code_PNG37.png" alt="QR">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- الشريط السفلي -->
+            <div class="footer-bottom">
+                <div class="bottom-links">
+                    <a href="#">الشروط والأحكام</a>
+                    <a href="#">سياسة الخصوصية</a>
+                </div>
+                <div class="lang-selector">
+                    <span>EN</span> <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" width="20" alt="US">
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="index.js"></script>
+    <!-- شاشة التحميل الثابتة -->
+<div id="global-loader" style="display: none;">
+    <div class="spinner-box">
+        <div class="spinner"></div>
+        <p id="loader-text">جاري التحميل...</p>
+    </div>
+</div>
+</body>
+
+</html>
